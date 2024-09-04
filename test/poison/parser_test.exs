@@ -298,6 +298,12 @@ defmodule Poison.ParserTest do
     end
   end
 
+  test "nil" do
+    assert_raise ParseError, "unexpected end of input at position 0", fn ->
+      parse!(nil)
+    end
+  end
+
   defp parse(iodata, options \\ %{}) do
     {:ok, parse!(iodata, options)}
   rescue

@@ -98,6 +98,9 @@ defmodule Poison.Parser do
 
   def parse!(iodata, options) do
     iodata |> IO.iodata_to_binary() |> parse!(options)
+  rescue
+    ArgumentError ->
+      reraise %ParseError{value: iodata}, __STACKTRACE__
   end
 
   @compile {:inline, value: 5}
